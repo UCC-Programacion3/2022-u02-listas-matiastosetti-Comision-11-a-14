@@ -1,6 +1,8 @@
 #ifndef U02_LISTAS_LISTA_LISTA_H_
 #define U02_LISTAS_LISTA_LISTA_H_
 
+
+#include "Nodo.h"
 /**
  * Clase que implementa una Lista Enlasada generica, ya que puede
  * almacenar cualquier tipo de dato T
@@ -8,6 +10,7 @@
  */
 template <class T> class Lista {
 private:
+    Nodo<T> *inicio;
 public:
   Lista();
 
@@ -38,7 +41,9 @@ public:
  * Constructor de la clase Lista
  * @tparam T
  */
-template <class T> Lista<T>::Lista() {}
+template <class T> Lista<T>::Lista() {
+    inicio = nullptr;
+}
 
 /**
  * Constructor por copia de la clase Lista
@@ -59,14 +64,34 @@ template <class T> Lista<T>::~Lista() {}
  * @tparam T
  * @return true si la lista esta vacia, sino false
  */
-template <class T> bool Lista<T>::esVacia() { return false; }
+template <class T> bool Lista<T>::esVacia() {
+    /*
+    if(inicio == nullptr) {
+        return true;
+    }else{
+        return false;
+    }
+    */
+    return inicio == nullptr;
+}
 
 /**
  * Metodo para obtener la cantidad de nodos de la lista
  * @tparam T
  * @return la cantidad de nodos de la lista
  */
-template <class T> int Lista<T>::getTamanio() {}
+template <class T>int Lista<T>::getTamanio() {
+    int size = 0;
+    Nodo<T> *auxNodo = inicio;
+
+    while (auxNodo != nullptr){
+        size++;
+        auxNodo = auxNodo->getSiguiente();
+    }
+
+    return size;
+
+}
 
 /**
  * Inserta un nodo con el dato en la posicion pos
@@ -74,28 +99,104 @@ template <class T> int Lista<T>::getTamanio() {}
  * @param pos lugar donde será insertado el dato
  * @param dato  dato a insertar
  */
-template <class T> void Lista<T>::insertar(int pos, T dato) {}
+template <class T> void Lista<T>::insertar(int pos, T dato) {
+    int posActual = 0;
+    Nodo<T> *auxNodo = inicio, *nuevo;
+    nuevo = new Nodo<T>;
+    nuevo-> setDato(dato);
+
+    if(pos == 0) {
+        nuevo->setSiguiente(inicio);
+        inicio = nuevo;
+        return;
+    }
+
+    while(auxNodo != nullptr && posActual < pos - 1){
+        auxNodo = auxNodo->getSiguiente();
+        posActual++;
+    }
+
+    if (auxNodo == nullptr) {
+        throw 404;
+    }
+
+    nuevo->setSiguiente(auxNodo->getSiguiente());
+    auxNodo->setSiguiente(nuevo);
+}
 
 /**
  * Inserta un nodo con el dato en la primera posicion
  * @tparam T
  * @param dato dato a insertar
  */
-template <class T> void Lista<T>::insertarPrimero(T dato) {}
+template <class T> void Lista<T>::insertarPrimero(T dato) {
+    // insertar(0, dato);
+
+    Nodo<T> *nuevo;
+    nuevo = new Nodo<T>;
+    nuevo-> setDato(dato);
+
+    nuevo->setSiguiente(inicio);
+    inicio = nuevo;
+
+}
 
 /**
  * Inserta un nodo con el dato en la ultima posicion
  * @tparam T
  * @param dato dato a insertar
  */
-template <class T> void Lista<T>::insertarUltimo(T dato) {}
+template <class T> void Lista<T>::insertarUltimo(T dato) {
+    // insertar(getTamanio() - 1, dato);
+    Nodo<T> *auxNodo = inicio, *nuevo;
+    nuevo = new Nodo<T>;
+    nuevo-> setDato(dato);
+
+    if( esVacia() ){
+        insertarPrimero(dato);
+        return;
+    }
+
+    while(auxNodo->getSiguiente() != nullptr){
+        auxNodo = auxNodo->getSiguiente();
+    }
+
+    nuevo->setSiguiente(auxNodo->getSiguiente());
+    auxNodo->setSiguiente(nuevo);
+}
 
 /**
  * Elimina el nodo en la posicion 'pos' de la lista enlasada
  * @tparam T
  * @param pos posicion del nodo a eliminar
  */
-template <class T> void Lista<T>::remover(int pos) {}
+template <class T> void Lista<T>::remover(int pos) {
+    Nodo<T> *auxNodo = inicio;
+    Nodo<T> *aBorrar;
+    int posActual = 0;
+
+    if ( esVacia() ) throw 404;
+
+    if(pos == 0) {
+        inicio = inicio->getSiguiente();
+        delete auxNodo;
+        return;
+    }
+
+    // hice esto para poder recorrer la lista hasta la posicion pedida
+    // y que corte cuando llega al final o a la posicion
+    while(auxNodo != nullptr && posActual < pos - 1){
+        auxNodo = auxNodo->getSiguiente();
+        posActual++;
+    }
+
+    if (auxNodo == nullptr) throw 404;
+
+    aBorrar = auxNodo->getSiguiente();
+    auxNodo->setSiguiente(auxNodo->getSiguiente()->getSiguiente());
+    delete aBorrar;
+
+}
 
 /**
  * Obtener el dato del nodo en la posicion pos
@@ -103,7 +204,20 @@ template <class T> void Lista<T>::remover(int pos) {}
  * @param pos posicion del dato
  * @return dato almacenado en el nodo
  */
-template <class T> T Lista<T>::getDato(int pos) {}
+template <class T> T Lista<T>::getDato(int pos) {
+    Nodo<T> *auxNodo = inicio;
+    int posActual = 0;
+
+    while(auxNodo != nullptr && posActual < pos){
+        auxNodo = auxNodo->getSiguiente();
+        posActual++;
+    }
+
+    if (auxNodo == nullptr) throw 404;
+
+    return auxNodo->getDato();
+
+}
 
 /**
  * Reemplaza el dato almacenado en un nodo por este otro
@@ -111,12 +225,16 @@ template <class T> T Lista<T>::getDato(int pos) {}
  * @param pos posicion donde se desea reemplazar
  * @param dato nuevo dato a almacenar
  */
-template <class T> void Lista<T>::reemplazar(int pos, T dato) {}
+template <class T> void Lista<T>::reemplazar(int pos, T dato) {
+
+}
 
 /**
  * Función que vacia la lista enlazada
  * @tparam T
  */
-template <class T> void Lista<T>::vaciar() {}
+template <class T> void Lista<T>::vaciar() {
+    Nodo
+}
 
 #endif // U02_LISTAS_LISTA_LISTA_H_

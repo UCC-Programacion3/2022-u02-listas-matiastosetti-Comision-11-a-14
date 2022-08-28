@@ -1,0 +1,101 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E01::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E01-Debug-8bcf37d1bd0c67fed81b.json",
+					"name" : "U02-E01",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E02::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E02-Debug-d60f4d0bd09fd943bec3.json",
+					"name" : "U02-E02",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E03::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E03-Debug-f68543446cc1e834a888.json",
+					"name" : "U02-E03",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E04::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E04-Debug-b6584cd5debf003142bd.json",
+					"name" : "U02-E04",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E05::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E05-Debug-f6a19d2fab301990d062.json",
+					"name" : "U02-E05",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "U02-E06::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-U02-E06-Debug-ae9d8629ab748012d84b.json",
+					"name" : "U02-E06",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/lover/Desktop/Programacion 3-Desarrollo Guia EN CLASES/2021a2-u02-listas-matiastosetti-1/cmake-build-debug",
+		"source" : "C:/Users/lover/Desktop/Programacion 3-Desarrollo Guia EN CLASES/2021a2-u02-listas-matiastosetti-1"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
